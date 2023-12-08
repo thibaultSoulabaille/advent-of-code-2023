@@ -1,11 +1,7 @@
 import re
-from utils.utils import open_input
+from day import Day
 
 DAY = 3
-
-input_file = open_input(DAY, test=True)
-
-# ---------- PART 1 ---------- #
 
 
 def extract_numbers(line: str) -> list[str]:
@@ -40,31 +36,30 @@ def get_line_score(acc_line: str, prev_line: str, next_line: str) -> int:
     return line_score
 
 
-def part_1() -> None:
-    res = 0
+class Day3(Day):
+    def __init__(self, day: int, test: bool = False) -> None:
+        super().__init__(day, test)
 
-    for idx, line in enumerate(input_file):
-        prev_line = input_file[max(0, idx-1)]
-        next_line = input_file[min(idx+1, len(input_file)-1)]
+    def part_1(self) -> int:
+        res = 0
 
-        res += get_line_score(
-            acc_line=line,
-            prev_line=prev_line,
-            next_line=next_line
-        )
+        for idx, line in enumerate(self.input_file):
+            prev_line = self.input_file[max(0, idx - 1)]
+            next_line = self.input_file[min(idx + 1, len(self.input_file) - 1)]
 
-    print(f'{res=}')
+            res += get_line_score(
+                acc_line=line,
+                prev_line=prev_line,
+                next_line=next_line
+            )
 
+        return res
 
-# ---------- PART 2 ---------- #
-
-def part_2() -> None:
-    res = 0
-    print(f'{res=}')
+    def part_2(self) -> int:
+        return 0
 
 
 if __name__ == "__main__":
-    print("PART 1 >>>>>>>>>>")
-    part_1()
-    print("PART 2 >>>>>>>>>>")
-    part_2()
+    day_3 = Day3(DAY)
+    print(f'{day_3.part_1()=}')
+    print(f'{day_3.part_2()=}')
