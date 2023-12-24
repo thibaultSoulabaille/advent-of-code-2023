@@ -39,7 +39,7 @@ class Day2(Day):
             return False
         return True
 
-    def get_min_game_score(self, line: str) -> int:
+    def _get_min_game_score(self, line: str) -> int:
         n_colors = extract_nb_colors(line)
 
         score = 1
@@ -60,7 +60,7 @@ class Day2(Day):
     def part_2(self) -> int:
         res = 0
         for line in self.input_file:
-            res += self.get_min_game_score(line)
+            res += self._get_min_game_score(line)
         return res
 
 
